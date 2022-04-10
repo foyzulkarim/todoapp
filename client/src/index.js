@@ -11,6 +11,8 @@ import reportWebVitals from './reportWebVitals';
 import Expenses from "./routes/expenses";
 import Invoices from "./routes/invoices";
 import Invoice from "./routes/invoice";
+import TodoEntry from "./routes/todo-entry";
+import TodoList from "./routes/todo-list";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +23,8 @@ ReactDOM.render(
           <Route path="invoices" element={<Invoices />}>
             <Route path=":invoiceId" element={<Invoice />} />
           </Route>
+          <Route path="add-todo" element={<TodoEntry />} />
+          <Route path="list-todo" element={<TodoList />} />
           <Route
             path="*"
             element={
