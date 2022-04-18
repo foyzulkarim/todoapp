@@ -32,7 +32,7 @@ app.post("/api/v1/todos", async (req, res) => {
     const savedTodo = await save(todo);
 
     res.status(201).json({
-        message: "Todo created successfully",
+        message: `${todo.name} has been saved`,
         savedTodo,
     });
 });
