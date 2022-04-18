@@ -13,6 +13,8 @@ import Invoices from "./routes/invoices";
 import Invoice from "./routes/invoice";
 import TodoEntry from "./routes/todo-entry";
 import TodoList from "./routes/todo-list";
+import TodoDetail from "./routes/todo-detail";
+import TodoEdit from "./routes/todo-edit";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,7 +26,10 @@ ReactDOM.render(
             <Route path=":invoiceId" element={<Invoice />} />
           </Route>
           <Route path="add-todo" element={<TodoEntry />} />
-          <Route path="list-todo" element={<TodoList />} />
+          <Route path="list-todo" element={<TodoList />} >
+            <Route path=":todoId" element={<TodoDetail />} />
+            <Route path="edit/:todoId" element={<TodoEdit />} />
+          </Route>
           <Route
             path="*"
             element={

@@ -37,11 +37,62 @@ app.post("/api/v1/todos", async (req, res) => {
     });
 });
 
+// put request
+app.put("/api/v1/todos/:id", async (req, res) => {
+    const {
+        id
+    } = req.params;
+
+    const {
+        name,
+        description,
+    } = req.body;
+
+    const todo = {
+        name,
+        description
+    };
+
+    const updatedTodo = await Todo.findByIdAndUpdate(id, todo, {
+        new: true,
+    });
+
+    res.status(200).json({
+        message: `${todo.name} has been updated`,
+        updatedTodo,
+    });
+});
+
 // get todos 
 app.get("/api/v1/todos", async (req, res) => {
     const todos = await Todo.find();
     res.status(200).json({
         todos,
+    });
+});
+
+// get todo detail by todoId
+app.get("/api/v1/todos/:todoId", async (req, res) => {
+    const {
+        todoId
+    } = req.params;
+
+    const todo = await Todo.findById(todoId);
+    res.status(200).json({
+        todo,
+    });
+});
+
+// delete todo 
+app.delete("/api/v1/todos/:todoId", async (req, res) => {
+    const {
+        todoId
+    } = req.params;
+
+    const deletedTodo = await Todo.findByIdAndDelete(todoId);
+    res.status(200).json({
+        message: `Todo has been deleted`,
+        deletedTodo,
     });
 });
 
